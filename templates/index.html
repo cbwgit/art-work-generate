@@ -1,12 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Artwork Order</title>
 </head>
+
 <body>
-    
+    <h1>Artwork Order</h1>
+
+    <h2>Submit Prompt</h2>
+    <form action="/submit" method="POST">
+        <label for="prompt">Prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h2>Authorization</h2>
+    <form action="/authorize" method="POST">
+        <label for="authorization">Authorization Code:</label><br>
+        <input type="text" id="authorization" name="authorization"><br>
+        <input type="submit" value="Authorize">
+    </form>
+
+    {{ if .orderID }}
+    <h2>Order Information</h2>
+    <p>Order ID: {{ .orderID }}</p>
+    <p>Order URL: {{ .orderURL }}</p>
+    <p>Prompt: {{ .prompt }}</p>
+    {{ end }}
+
+    {{ if .authorization }}
+    <h2>Authorization Code</h2>
+    <p>Authorization: {{ .authorization }}</p>
+    {{ end }}
 </body>
+
 </html>
